@@ -43,7 +43,7 @@ public class GPSManager implements GoogleApiClient.ConnectionCallbacks, GoogleAp
     private boolean isBestProviderAvail=false;
 
 
-    private static int UPDATE_INTERVAL = 5000; //5 seconds
+    private static int UPDATE_INTERVAL = 10000; //5 seconds
     private static int FASTEST__INTERVAL = 1000; //1seconds
     private static int DISPLACEMENT = 10;
     //location object to save location
