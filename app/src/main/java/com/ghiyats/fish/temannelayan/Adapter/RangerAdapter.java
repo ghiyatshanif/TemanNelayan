@@ -17,13 +17,13 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class rangerAdapter extends BaseAdapter {
+public class RangerAdapter extends BaseAdapter {
 
     private Activity activity;
     private ArrayList<RangerModel> rangers;
     private LayoutInflater inflater;
 
-    public rangerAdapter(ArrayList<RangerModel> rangers, Activity activity) {
+    public RangerAdapter(ArrayList<RangerModel> rangers, Activity activity) {
         this.rangers = rangers;
         this.activity = activity;
     }

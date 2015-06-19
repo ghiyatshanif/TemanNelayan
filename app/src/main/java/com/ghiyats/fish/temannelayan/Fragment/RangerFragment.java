@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.ghiyats.fish.temannelayan.Adapter.rangerAdapter;
+import com.ghiyats.fish.temannelayan.Adapter.RangerAdapter;
 import com.ghiyats.fish.temannelayan.Helper.RangerDbHelper;
 import com.ghiyats.fish.temannelayan.Helper.SessionManager;
 import com.ghiyats.fish.temannelayan.Model.RangerModel;
@@ -28,7 +28,7 @@ public class RangerFragment extends Fragment {
     RangerDbHelper rangerHelper;
     ListView rangerList;
     ArrayList<RangerModel> rangers;
-    rangerAdapter adapter;
+    RangerAdapter adapter;
 
 
     public RangerFragment() {
@@ -57,7 +57,7 @@ public class RangerFragment extends Fragment {
         rangers = new ArrayList<RangerModel>();
         rangers = rangerHelper.load();
 
-        adapter = new rangerAdapter(rangers,getActivity());
+        adapter = new RangerAdapter(rangers,getActivity());
 
         new setAdapterAsync().execute();
 
