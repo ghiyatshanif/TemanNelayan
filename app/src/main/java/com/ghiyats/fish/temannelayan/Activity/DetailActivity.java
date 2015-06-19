@@ -29,13 +29,14 @@ public class DetailActivity extends ActionBarActivity {
     Intent intent;
     LocationDbHelper dbHelper;
     TurtleModel turtle;
-    AlertDialog dialog;
+    String ID;
     @InjectView(R.id.namaTitle) TextView namaTitle;
     @InjectView(R.id.locationTitle) TextView locationTitle;
     @InjectView(R.id.btnOpenMap) TextView btnOpenMap;
     @InjectView(R.id.jmlTitle) TextView jmlTitle;
     @InjectView(R.id.jenisTitle) TextView jenisTitle;
     @InjectView(R.id.btnOpenDropbox) Button btnOpenDropbox;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +46,9 @@ public class DetailActivity extends ActionBarActivity {
         dbHelper = new LocationDbHelper(this);
         turtle = new TurtleModel();
         intent = getIntent();
-        String ID = intent.getStringExtra("ID");
+        ID = intent.hasExtra("ID") ? intent.getStringExtra("ID") : savedInstanceState.getString("TURTLE_ID");
         turtle = dbHelper.get(ID);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         namaTitle.setText(turtle.getName());
@@ -70,12 +72,18 @@ public class DetailActivity extends ActionBarActivity {
 
         switch (item.getItemId()){
             case R.id.action_edit:
-                Intent intent = new Intent(this,EditLocation.class);
-                intent.putExtra("ID", turtle.getID());
-                startActivity(intent);
+                Intent edit = new Intent(this,EditLocation.class);
+                edit.putExtra("ID", turtle.getID());
+                startActivity(edit);
                 break;
             case R.id.action_delete:
                 confirmDialog();
+                break;
+            case R.id.action_stat:
+                Intent chart = new Intent(this,ChartActivity.class);
+                chart.putExtra("ID", turtle.getID());
+                startActivity(chart);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -124,4 +132,9 @@ public class DetailActivity extends ActionBarActivity {
         builder.show();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("TURTLE_ID",turtle.getID());
+        super.onSaveInstanceState(outState);
+    }
 }

@@ -57,7 +57,7 @@ public class LocationFragment extends Fragment {
         super.onCreate(savedInstanceState);
         sessionManager = new SessionManager(getActivity());
         dbHelper = new LocationDbHelper(getActivity().getApplicationContext());
-//        clearDB();
+//        dbHelper.clear();
 //        initData();
         setHasOptionsMenu(true);
     }
@@ -129,14 +129,6 @@ public class LocationFragment extends Fragment {
     }
 
 
-    public void clearDB(){
-
-        Realm realm = Realm.getInstance(getActivity());
-        RealmResults<TurtleModel> query = realm.where(TurtleModel.class).findAll();
-        realm.beginTransaction();
-        query.clear();
-        realm.commitTransaction();
-    }
 
     public Date getCurentTime(){
         Calendar c = Calendar.getInstance();

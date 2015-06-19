@@ -9,6 +9,7 @@ import com.ghiyats.fish.temannelayan.Fragment.AboutFragment;
 import com.ghiyats.fish.temannelayan.Fragment.LegalFragment;
 import com.ghiyats.fish.temannelayan.Fragment.LocationFragment;
 import com.ghiyats.fish.temannelayan.Fragment.MainFragment;
+import com.ghiyats.fish.temannelayan.Fragment.RangerFragment;
 import com.ghiyats.fish.temannelayan.R;
 import com.ghiyats.fish.temannelayan.Helper.SessionManager;
 
@@ -48,9 +49,9 @@ public class NavigationDrawer extends MaterialNavigationDrawer {
                 new LocationFragment());
         addSection(location_section);
 
-        MaterialSection compass_section = this.newSection(getResources().getString(R.string.menu_infografis),
-                getResources().getDrawable(R.drawable.ic_assessment_white_48dp),
-                new MainFragment());
+        MaterialSection compass_section = this.newSection(getResources().getString(R.string.menu_rangers),
+                getResources().getDrawable(R.drawable.ic_people_white_48dp),
+                new RangerFragment());
         addSection(compass_section);
 
         MaterialSection acc_section = newSection(getResources().getString(R.string.menu_akun),

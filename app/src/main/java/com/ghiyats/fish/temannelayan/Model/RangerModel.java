@@ -13,6 +13,7 @@ public class RangerModel extends RealmObject {
 
     private String rangerID;
     private String rangerName;
+    private String thumbnail;
     private String memberOf;
     private String phoneNumber;
     private String password;
@@ -72,5 +73,13 @@ public class RangerModel extends RealmObject {
 
     public void setInChargeFor(RealmList<TurtleModel> inChargeFor) {
         this.inChargeFor = inChargeFor;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }

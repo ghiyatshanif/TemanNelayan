@@ -6,15 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ghiyats.fish.temannelayan.Model.RangerModel;
 import com.ghiyats.fish.temannelayan.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Ghiyats on 6/15/2015.
- */
+import de.hdodenhof.circleimageview.CircleImageView;
+
+
 public class rangerAdapter extends BaseAdapter {
 
     private Activity activity;
@@ -50,7 +52,21 @@ public class rangerAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.ranger_row,null);
         }
 
+        RangerModel ranger = rangers.get(position);
 
+        CircleImageView thumbnail =(CircleImageView) convertView.findViewById(R.id.thumbnail);
+        TextView rangerName = (TextView) convertView.findViewById(R.id.rangerName);
+        TextView memberOf = (TextView) convertView.findViewById(R.id.memberOf);
+
+        //thumbneil with glide
+        Glide.with(activity)
+                .load(ranger.getThumbnail())
+                .override(100, 100)
+                .centerCrop()
+                .into(thumbnail);
+
+        rangerName.setText(ranger.getRangerName());
+        memberOf.setText(ranger.getMemberOf());
 
         return convertView;
     }

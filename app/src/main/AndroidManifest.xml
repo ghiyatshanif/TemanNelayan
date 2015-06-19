@@ -68,12 +68,22 @@
 
         <activity
             android:name=".Activity.MapsView"
-            android:theme="@style/AppTheme"
             android:label="@string/title_activity_maps_view"
-            android:parentActivityName=".Activity.NavigationDrawer">
+            android:parentActivityName=".Activity.NavigationDrawer"
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.NavigationDrawer" >
+            </meta-data>
+        </activity>
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".Activity.ChartActivity"
+            android:label="@string/title_activity_chart"
+            android:parentActivityName=".Activity.DetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.DetailActivity" >
             </meta-data>
         </activity>
     </application>

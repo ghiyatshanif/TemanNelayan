@@ -13,9 +13,7 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
-/**
- * Created by Ghiyats on 6/12/2015.
- */
+
 public class RangerDbHelper {
     private Context context;
 
@@ -47,6 +45,7 @@ public class RangerDbHelper {
         edit.setMemberOf(ranger.getMemberOf());
         edit.setPhoneNumber(ranger.getPhoneNumber());
         edit.setInChargeFor(ranger.getInChargeFor());
+        edit.setThumbnail(ranger.getThumbnail());
 
         realm.commitTransaction();
     }
@@ -75,6 +74,7 @@ public class RangerDbHelper {
         add.setPhoneNumber(ranger.getPhoneNumber());
         add.setMemberOf(ranger.getMemberOf());
         add.setInChargeFor(ranger.getInChargeFor());
+        add.setThumbnail(ranger.getThumbnail());
         realm.commitTransaction();
     }
 
@@ -127,7 +127,7 @@ public class RangerDbHelper {
         realm.commitTransaction();
     }
 
-    public void init(String rangerID, String rangerName, String memberOf, String phoneNumber, String password, ArrayList<TurtleModel> inChargeFor){
+    public void init(String rangerID, String rangerName, String memberOf, String phoneNumber, String password, ArrayList<TurtleModel> inChargeFor, String thumbnail){
         Realm realm = Realm.getInstance(context);
 
         RealmList<TurtleModel> inCharge = new RealmList<TurtleModel>();
@@ -136,10 +136,8 @@ public class RangerDbHelper {
             inCharge.add(turtle);
         }
 
-
-        RangerModel init = realm.createObject(RangerModel.class);
-
         realm.beginTransaction();
+        RangerModel init = realm.createObject(RangerModel.class);
         init.setUniqueID(UUID.randomUUID().toString());
         init.setRangerID(rangerID);
         init.setRangerName(rangerName);
@@ -147,6 +145,7 @@ public class RangerDbHelper {
         init.setPhoneNumber(phoneNumber);
         init.setPassword(password);
         init.setInChargeFor(inCharge);
+        init.setThumbnail(thumbnail);
         realm.commitTransaction();
     }
 

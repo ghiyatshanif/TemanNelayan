@@ -3,6 +3,7 @@ package com.ghiyats.fish.temannelayan.Helper;
 import android.content.Context;
 import android.util.Log;
 
+import com.ghiyats.fish.temannelayan.Model.RangerModel;
 import com.ghiyats.fish.temannelayan.Model.TurtleModel;
 
 import java.util.ArrayList;
@@ -14,9 +15,7 @@ import java.util.UUID;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-/**
- * Created by Ghiyats on 6/7/2015.
- */
+
 public class LocationDbHelper {
 
     private Context context;
@@ -60,7 +59,7 @@ public class LocationDbHelper {
         Log.d("Realm init","added");
     }
 
-    public void add(String name, String turtleCategory,int jmlTelur, String latitude, String longitude, Date savedOn, String createdBy,String dropboxLink){
+    public void add(String name, String turtleCategory,int jmlTelur, String latitude, String longitude, Date savedOn, String createdBy,String dropboxLink, RangerModel rangerIncharge){
         Realm realm = Realm.getInstance(context);
         //beginning realm transaction
         realm.beginTransaction();
@@ -76,6 +75,7 @@ public class LocationDbHelper {
         lm.setSavedOn(savedOn);
         lm.setDropboxLink(dropboxLink);
         lm.setRandomNum(new Random().nextInt(6));
+        lm.setRangerInCharge(rangerIncharge);
 
         realm.commitTransaction();
     }
@@ -94,6 +94,7 @@ public class LocationDbHelper {
         lm.setJmlTelur(turtle.getJmlTelur());
         lm.setSavedOn(getCurentTime());
         lm.setDropboxLink(turtle.getDropboxLink());
+        lm.setRangerInCharge(turtle.getRangerInCharge());
 
         realm.commitTransaction();
     }

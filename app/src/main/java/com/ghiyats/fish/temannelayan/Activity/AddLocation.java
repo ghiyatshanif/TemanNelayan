@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.ghiyats.fish.temannelayan.Helper.GPSManager;
 import com.ghiyats.fish.temannelayan.Helper.LocationDbHelper;
 import com.ghiyats.fish.temannelayan.Helper.SessionManager;
+import com.ghiyats.fish.temannelayan.Model.RangerModel;
 import com.ghiyats.fish.temannelayan.R;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class AddLocation extends ActionBarActivity {
             String longitude = String.valueOf(gpsManager.getCurrentLocation().getLongitude());
             String latitude = String.valueOf(gpsManager.getCurrentLocation().getLatitude());
 
-            dbHelper.add(nama, jenis, jml, latitude, longitude, date, savedBy, link);
+            dbHelper.add(nama, jenis, jml, latitude, longitude, date, savedBy, link,new RangerModel());
             Crouton.makeText(this,"Data telah tersimpan",Style.CONFIRM).show();
 
             //startActivity(new Intent(this, NavigationDrawer.class));
