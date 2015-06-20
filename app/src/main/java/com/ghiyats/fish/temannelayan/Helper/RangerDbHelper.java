@@ -2,6 +2,7 @@ package com.ghiyats.fish.temannelayan.Helper;
 
 import android.content.Context;
 
+import com.ghiyats.fish.temannelayan.Model.KonservasiModel;
 import com.ghiyats.fish.temannelayan.Model.RangerModel;
 import com.ghiyats.fish.temannelayan.Model.TurtleModel;
 
@@ -16,15 +17,28 @@ import io.realm.RealmResults;
 
 public class RangerDbHelper {
     private Context context;
+    private KonservasiDbHelper konservasiHelper;
 
     public RangerDbHelper(Context context) {
         this.context = context;
+        konservasiHelper = new KonservasiDbHelper(context);
     }
 
     public ArrayList<RangerModel> load(){
         ArrayList<RangerModel> rangers = new ArrayList<RangerModel>();
         Realm realm = Realm.getInstance(context);
         RealmResults<RangerModel> results = realm.where(RangerModel.class).findAll();
+
+        for (RangerModel rangerModel : results){
+            rangers.add(rangerModel);
+        }
+        return rangers;
+    }
+
+    public ArrayList<RangerModel> loadByKonservasi(String ID){
+        ArrayList<RangerModel> rangers = new ArrayList<RangerModel>();
+        Realm realm = Realm.getInstance(context);
+        RealmResults<RangerModel> results = realm.where(RangerModel.class).equalTo("memberOf.ID",ID).findAll();
 
         for (RangerModel rangerModel : results){
             rangers.add(rangerModel);
@@ -42,9 +56,8 @@ public class RangerDbHelper {
 
         edit.setRangerName(ranger.getRangerName());
         edit.setPassword(ranger.getPassword());
-        edit.setMemberOf(ranger.getMemberOf());
         edit.setPhoneNumber(ranger.getPhoneNumber());
-        edit.setInChargeFor(ranger.getInChargeFor());
+        edit.setMemberOf(ranger.getMemberOf());
         edit.setThumbnail(ranger.getThumbnail());
 
         realm.commitTransaction();
@@ -59,6 +72,8 @@ public class RangerDbHelper {
         realm.beginTransaction();
         delete.removeFromRealm();
         realm.commitTransaction();
+
+        konservasiHelper.removeRanger(delete.getMemberOf().getID(),delete);
     }
 
     public void add(RangerModel ranger){
@@ -73,16 +88,17 @@ public class RangerDbHelper {
         add.setPassword(ranger.getPassword());
         add.setPhoneNumber(ranger.getPhoneNumber());
         add.setMemberOf(ranger.getMemberOf());
-        add.setInChargeFor(ranger.getInChargeFor());
         add.setThumbnail(ranger.getThumbnail());
         realm.commitTransaction();
+
+        konservasiHelper.addRanger(ranger.getMemberOf().getID(),add);
     }
 
-    public RangerModel get(String ID){
+    public RangerModel get(String rangerID){
         Realm realm = Realm.getInstance(context);
 
         RangerModel get = new RangerModel();
-        get = realm.where(RangerModel.class).equalTo("uniqueID",ID).findFirst();
+        get = realm.where(RangerModel.class).equalTo("rangerID",rangerID).findFirst();
 
         return get;
     }
@@ -107,34 +123,12 @@ public class RangerDbHelper {
         return rangers;
     }
 
-    public void addInCharge(String ID,TurtleModel turtle){
-        Realm realm = Realm.getInstance(context);
-        RangerModel ranger = new RangerModel();
-        ranger = realm.where(RangerModel.class).equalTo("uniqueID",ID).findFirst();
 
-        realm.beginTransaction();
-        ranger.getInChargeFor().add(turtle);
-        realm.commitTransaction();
-    }
-
-    public void deleteInCharge(TurtleModel turtle){
-        Realm realm = Realm.getInstance(context);
-        RangerModel ranger = new RangerModel();
-        ranger = realm.where(RangerModel.class).equalTo("inChargeFor.ID",turtle.getID()).findFirst();
-
-        realm.beginTransaction();
-        ranger.getInChargeFor().remove(turtle);
-        realm.commitTransaction();
-    }
-
-    public void init(String rangerID, String rangerName, String memberOf, String phoneNumber, String password, ArrayList<TurtleModel> inChargeFor, String thumbnail){
+    public void init(String rangerID, String rangerName, KonservasiModel memberOf, String phoneNumber, String password, String thumbnail){
         Realm realm = Realm.getInstance(context);
 
         RealmList<TurtleModel> inCharge = new RealmList<TurtleModel>();
 
-        for (TurtleModel turtle : inChargeFor){
-            inCharge.add(turtle);
-        }
 
         realm.beginTransaction();
         RangerModel init = realm.createObject(RangerModel.class);
@@ -144,9 +138,10 @@ public class RangerDbHelper {
         init.setMemberOf(memberOf);
         init.setPhoneNumber(phoneNumber);
         init.setPassword(password);
-        init.setInChargeFor(inCharge);
         init.setThumbnail(thumbnail);
         realm.commitTransaction();
+
+        konservasiHelper.addRanger(memberOf.getID(),init);
     }
 
 

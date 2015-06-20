@@ -21,9 +21,9 @@ public class TurtleModel extends RealmObject {
     private String dropboxLink;
     private Date savedOn;
     private String savedBy;
-    private RangerModel rangerInCharge;
+    private KonservasiModel konservasiInCharge;
 
-    public TurtleModel(String ID, String name, String turtleCategory, int jmlTelur, String longitude, String latitude, Date savedOn, String savedBy, String dropboxLink, int randomNum, RangerModel rangerInCharge) {
+    public TurtleModel(String ID, String name, String turtleCategory, int jmlTelur, String longitude, String latitude, Date savedOn, String savedBy, String dropboxLink, int randomNum, KonservasiModel konservasiInCharge) {
         this.ID = ID;
         this.name = name;
         this.turtleCategory = turtleCategory;
@@ -34,7 +34,7 @@ public class TurtleModel extends RealmObject {
         this.savedBy = savedBy;
         this.dropboxLink = dropboxLink;
         this.randomNum = randomNum;
-        this.rangerInCharge = rangerInCharge;
+        this.konservasiInCharge = konservasiInCharge;
     }
 
     public TurtleModel() {
@@ -120,11 +120,11 @@ public class TurtleModel extends RealmObject {
         this.randomNum = randomNum;
     }
 
-    public RangerModel getRangerInCharge() {
-        return rangerInCharge;
+    public KonservasiModel getKonservasiInCharge() {
+        return konservasiInCharge;
     }
 
-    public void setRangerInCharge(RangerModel rangerInCharge) {
-        this.rangerInCharge = rangerInCharge;
+    public void setKonservasiInCharge(KonservasiModel konservasiInCharge) {
+        this.konservasiInCharge = konservasiInCharge;
     }
 }

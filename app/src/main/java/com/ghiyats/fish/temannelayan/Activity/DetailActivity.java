@@ -36,6 +36,7 @@ public class DetailActivity extends ActionBarActivity {
     @InjectView(R.id.jmlTitle) TextView jmlTitle;
     @InjectView(R.id.jenisTitle) TextView jenisTitle;
     @InjectView(R.id.btnOpenDropbox) Button btnOpenDropbox;
+    @InjectView(R.id.konservasi) TextView konservasiText;
 
 
     @Override
@@ -46,15 +47,43 @@ public class DetailActivity extends ActionBarActivity {
         dbHelper = new LocationDbHelper(this);
         turtle = new TurtleModel();
         intent = getIntent();
-        ID = intent.hasExtra("ID") ? intent.getStringExtra("ID") : savedInstanceState.getString("TURTLE_ID");
-        turtle = dbHelper.get(ID);
-
+        Log.d("hasExtra", String.valueOf(intent.hasExtra("ID")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        namaTitle.setText(turtle.getName());
-        locationTitle.setText(turtle.getLatitude() + ", " + turtle.getLongitude());
-        jmlTitle.setText(String.valueOf(turtle.getJmlTelur()));
-        jenisTitle.setText(turtle.getTurtleCategory());
+        try {
+            if (intent.getStringExtra("ID") != null) {
+                ID =intent.getStringExtra("ID");
+                turtle = dbHelper.get(ID);
+                namaTitle.setText(turtle.getName());
+                locationTitle.setText(turtle.getLatitude() + ", " + turtle.getLongitude());
+                jmlTitle.setText(String.valueOf(turtle.getJmlTelur()));
+                jenisTitle.setText(turtle.getTurtleCategory());
+                konservasiText.setText(turtle.getKonservasiInCharge().getNamaKonservasi());
+            }
+            ID = savedInstanceState.getString("TURTLE_ID");
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d("restoreSavedInstance",savedInstanceState.getString("TURTLE_ID"));
+        ID = savedInstanceState.getString("TURTLE_ID");
+
+        if (ID != null){
+
+            turtle = dbHelper.get(ID);
+            namaTitle.setText(turtle.getName());
+            locationTitle.setText(turtle.getLatitude() + ", " + turtle.getLongitude());
+            jmlTitle.setText(String.valueOf(turtle.getJmlTelur()));
+            jenisTitle.setText(turtle.getTurtleCategory());
+            konservasiText.setText(turtle.getKonservasiInCharge().getNamaKonservasi());
+        }
     }
 
     @Override
@@ -73,7 +102,7 @@ public class DetailActivity extends ActionBarActivity {
         switch (item.getItemId()){
             case R.id.action_edit:
                 Intent edit = new Intent(this,EditLocation.class);
-                edit.putExtra("ID", turtle.getID());
+                edit.putExtra("ID", ID);
                 startActivity(edit);
                 break;
             case R.id.action_delete:
@@ -119,7 +148,9 @@ public class DetailActivity extends ActionBarActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dbHelper.delete(turtle.getID());
-                        startActivity(new Intent(getBaseContext(), NavigationDrawer.class));
+                        Intent intent = new  Intent(getBaseContext(), NavigationDrawer.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         finish();
                     }
                 })
@@ -134,7 +165,8 @@ public class DetailActivity extends ActionBarActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("TURTLE_ID",turtle.getID());
+        Log.d("save instance",turtle.getID());
+        outState.putString("TURTLE_ID", turtle.getID());
         super.onSaveInstanceState(outState);
     }
 }

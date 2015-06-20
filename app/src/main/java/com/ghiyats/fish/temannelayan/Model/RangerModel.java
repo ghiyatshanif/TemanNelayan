@@ -14,10 +14,9 @@ public class RangerModel extends RealmObject {
     private String rangerID;
     private String rangerName;
     private String thumbnail;
-    private String memberOf;
+    private KonservasiModel memberOf;
     private String phoneNumber;
     private String password;
-    private RealmList<TurtleModel> inChargeFor;
 
     public String getUniqueID() {
         return uniqueID;
@@ -43,11 +42,11 @@ public class RangerModel extends RealmObject {
         this.rangerName = rangerName;
     }
 
-    public String getMemberOf() {
+    public KonservasiModel getMemberOf() {
         return memberOf;
     }
 
-    public void setMemberOf(String memberOf) {
+    public void setMemberOf(KonservasiModel memberOf) {
         this.memberOf = memberOf;
     }
 
@@ -65,14 +64,6 @@ public class RangerModel extends RealmObject {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public RealmList<TurtleModel> getInChargeFor() {
-        return inChargeFor;
-    }
-
-    public void setInChargeFor(RealmList<TurtleModel> inChargeFor) {
-        this.inChargeFor = inChargeFor;
     }
 
     public String getThumbnail() {

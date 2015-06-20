@@ -66,7 +66,7 @@ public class RangerAdapter extends BaseAdapter {
                 .into(thumbnail);
 
         rangerName.setText(ranger.getRangerName());
-        memberOf.setText(ranger.getMemberOf());
+        memberOf.setText(ranger.getMemberOf().getNamaKonservasi());
 
         return convertView;
     }

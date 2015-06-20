@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
 
     <application
         android:name=".App.AppController"
@@ -77,14 +79,25 @@
             </meta-data>
         </activity>
         <activity
-            android:theme="@style/AppTheme"
             android:name=".Activity.ChartActivity"
             android:label="@string/title_activity_chart"
-            android:parentActivityName=".Activity.DetailActivity">
+            android:parentActivityName=".Activity.DetailActivity"
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.DetailActivity" >
             </meta-data>
+        </activity>
+        <activity
+            android:name=".Activity.DetailKonservasi"
+            android:label="@string/title_activity_detail_konservasi"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".Activity.NavigationDrawer">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.NavigationDrawer" >
+            </meta-data>
+
         </activity>
     </application>
 

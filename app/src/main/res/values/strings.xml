@@ -7,7 +7,7 @@
     <string name="menu_daftar_lokasi">Lokasi Penyusuar</string>
     <string name="menu_rangers">Rangers</string>
     <string name="menu_akun">Setelan Akun</string>
-    <string name="menu_cuaca">Info cuaca</string>
+    <string name="menu_konservasi">Konservasi</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -31,4 +31,5 @@
     <string name="title_activity_detail">Detail</string>
     <string name="title_activity_maps_view">Peta</string>
     <string name="title_activity_chart">Data Ancaman</string>
+    <string name="title_activity_detail_konservasi">DetailKonservasi</string>
 </resources>
