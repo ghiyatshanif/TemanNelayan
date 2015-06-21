@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.ghiyats.fish.temannelayan.Fragment.AboutFragment;
+import com.ghiyats.fish.temannelayan.Fragment.AccountFragment;
 import com.ghiyats.fish.temannelayan.Fragment.KonservasiFragment;
 import com.ghiyats.fish.temannelayan.Fragment.LegalFragment;
 import com.ghiyats.fish.temannelayan.Fragment.LocationFragment;
@@ -84,7 +85,7 @@ public class NavigationDrawer extends MaterialNavigationDrawer {
 
         MaterialSection acc_section = newSection(getResources().getString(R.string.menu_akun),
                 getResources().getDrawable(R.drawable.ic_account_box_white_48dp),
-                new MainFragment());
+                new AccountFragment());
         addSection(acc_section);
 
         this.addDivisor();

@@ -240,8 +240,8 @@ public class MapsView extends ActionBarActivity implements OnMapReadyCallback, G
         //change map camera to current location
         CameraPosition myPosition = new CameraPosition.Builder()
                 .target(new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude()))
-                .zoom(13)
-                .bearing(90)
+                .zoom(15)
+                .bearing(0)
                 .tilt(40)
                 .build();
 

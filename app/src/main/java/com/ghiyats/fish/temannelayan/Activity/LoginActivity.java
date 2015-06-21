@@ -239,12 +239,20 @@ public class LoginActivity extends AppCompatActivity {
 
     public void initLocations(){
         Log.d("masukin data", "dsfsafdasfasdfda");
-        dbHelper.init("Penyusuar pangandaran 1", "Penyu Hijau", 92, "-7.692016", "108.663652", getCurentTime(), "maman", "",konservasi);
-        dbHelper.init("Penyusuar pangandaran 2", "Penyu Sisisk",100, "-7.730110", "108.670099", getCurentTime(), "maman","",konservasi);
-        dbHelper.init("Penyusuar Batu Hiu 1", "Penyu Belimbing",80, "-7.690449", "108.542076", getCurentTime(), "maman", "",konservasi);
-        dbHelper.init("Penyusuar Batu Hiu utara", "Penyu Hijau",77, "-7.000973", "106.509930", getCurentTime(), "maman","",konservasi);
-        dbHelper.init("Penyusuar Pelabuhan Ratu", "Penyu Tempayan",93, "-6.981864", "106.540221", getCurentTime(), "maman","",konservasi);
-        dbHelper.init("Penyusuar Pangumbahan wetan", "Penyu Sisik",82, "-7.344612", "106.400885", getCurentTime(), "maman","",konservasi);
-        dbHelper.init("Penusuar Pangumbahan kidul", "Penyu Hijau",67, "-7.336865", "106.398546", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Teluk pangandaran", "Penyu Hijau", 92, "-7.691471", "108.538996", getCurentTime(), "maman", "", konservasi);
+        dbHelper.init("Teluk pangandaran 2", "Penyu Sisik", 100, "-7.691273", "108.539095", getCurentTime(), "maman", "", konservasi);
+        dbHelper.init("Teluk Pangandaran 3", "Penyu Belimbing",80, "-7.691021", "108.540475", getCurentTime(), "maman", "",konservasi);
+        dbHelper.init("Penyusuar Cibenda", "Penyu Hijau",77, "-7.690959", "108.540697", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Penyusuar Cibenda 2", "Penyu Tempayan",93, "-7.690645", "108.542051", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Penyusuar Ciliang", "Penyu Sisik",82, "-7.694241", "108.529438", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Penyusuar Parigi", "Penyu Hijau",90, "-7.693301", "108.532133", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Pantai Batu Hiu", "Penyu Sisik",90, "-7.692496", "108.536116", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Pantai Batu Hiu 2", "Penyu Sisik",90, "-7.692384", "108.535993", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Penyusuar Parigi 2", "Penyu Hijau",87, "-7.693301", "108.532133", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Penyusuar Ciliang 2", "Penyu Hijau",97, "-7.695112", "108.526843", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Penyusuar Ciliang 3", "Penyu Sisik",77, "-7.693875", "108.530320", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Penyusuar Parigi 2", "Penyu Belimbing",84, "-7.694425", "108.528889", getCurentTime(), "maman","",konservasi);
+        dbHelper.init("Teluk Pangandaran 4", "Penyu Belimbing",84, "-7.693875", "108.530320", getCurentTime(), "maman","",konservasi);
+
     }
 }
