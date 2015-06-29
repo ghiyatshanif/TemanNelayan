@@ -143,6 +143,7 @@ public class AddLocation extends ActionBarActivity {
         intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY,true);
 
         startActivity(intent);
+        Log.d("dfasdf","dasffasfas");
     }
 
     public void clearForm(){
