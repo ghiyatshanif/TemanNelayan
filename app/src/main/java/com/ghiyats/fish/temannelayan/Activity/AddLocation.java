@@ -54,6 +54,7 @@ public class AddLocation extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
         ButterKnife.inject(this);
+        Log.d("onCreate","create");
         gpsManager = new GPSManager(this);
         gpsManager.buildGoogleApiClient();
         gpsManager.getGoogleApiClient().connect();
